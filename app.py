@@ -45,7 +45,7 @@ settings.configure(
 
    
     CSRF_TRUSTED_ORIGINS=[
-        "https://migold.onrender.com/",
+        "https://migold.onrender.com",
         "http://localhost:8000",
     ],
 
@@ -167,4 +167,5 @@ for p in products_to_add:
 
 
 execute_from_command_line(["manage.py", "runserver", "0.0.0.0:8000"])
+
 
