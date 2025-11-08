@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Simple Shop{% endblock %}</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+/* ===============================
+   GLOBAL RESET & BASE STYLES
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    background: #f2f2f2;
+}
+
+/* ===============================
+   HEADER STYLING
+================================ */
+header {
+    background: #111;
+    color: #fff;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 13px;
+}
+
+nav a:hover {
+    color: #ff3f6c;
+}
+
+/* ===============================
+   CONTAINER
+================================ */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* ===============================
+   PRODUCT CARD STYLING
+================================ */
+.product {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: top;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.05);
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.product h3 {
+    font-size: 15px;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.product p {
+    font-size: 12px;
+    color: #666;
+    height: 36px; /* fixed height for uniform cards */
+    overflow: hidden;
+}
+
+.product strong {
+    display: block;
+    margin: 10px 0;
+    color: #ff3f6c;
+    font-size: 14px;
+}
+
+/* ===============================
+   BUTTON STYLING
+================================ */
+.btn {
+    display: inline-block;
+    background: #ff3f6c;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #e02f5b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ===============================
+   TABLE STYLING (ORDERS)
+================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 13px;
+}
+
+th {
+    background: #111;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+footer {
+    background: #111;
+    color: #fff;
+    padding: 20px 30px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #ff3f6c;
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+/* ===============================
+   RESPONSIVE MEDIA QUERIES
+================================ */
+@media (max-width: 1024px) {
+    .product {
+        width: 45%;
+        margin: 15px 2.5%;
+    }
+}
+
+@media (max-width: 768px) {
+    nav a {
+        font-size: 12px;
+        margin: 0 10px;
+    }
+    .product {
+        width: 48%;
+        margin: 10px 1%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav {
+        margin-top: 10px;
+    }
+    .product {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .container {
+        padding: 0 10px;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛍️ MI Gold</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/products/">Products</a>
+            <a href="/orders/">Orders</a>
+        </nav>
+    </header>
+<div style="
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f9fafb;
+    text-align: center;
+    padding: 60px 20px;
+    box-sizing: border-box;
+">
+
+    <!-- Static Welcome Text -->
+    <h1 style="
+        font-size: 4vw;
+        max-font-size: 48px;
+        font-weight: bold;
+        background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 30px;
+        font-family: 'Courier New', monospace;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        line-height: 1.2;
+    ">
+        Welcome to MI Gold Store!
+    </h1>
+
+    <!-- Smaller Centered Image -->
+    <img src="https://img.freepik.com/premium-photo/ecommerce-banner_1281315-2976.jpg?w=996" 
+         alt="Shopping Fashion" 
+         style="
+            width: 60%;
+            max-width: 400px;
+            min-width: 200px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            object-fit: cover;
+         ">
+
+</div>
+
+<style>
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    h1 { font-size: 6vw; }
+    img { width: 50%; }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 8vw; }
+    img { width: 70%; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 10vw; margin-bottom: 20px; }
+    img { width: 90%; }
+}
+</style>
+
+
+
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p>&copy; 2025 Simple Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
